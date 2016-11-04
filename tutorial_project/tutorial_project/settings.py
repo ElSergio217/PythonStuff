@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qy=*5=j-^q!fz$=aix=+1v%x&vk*-j3sb)%^+wonzoalf(-^u)'
+SECRET_KEY = '1=rs=r8inq7&nnrlj(a#k&a(xir6e+wgnbj5hzk7#jd_jx8_c='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,6 +49,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    )
+
 ROOT_URLCONF = 'tutorial_project.urls'
 
 WSGI_APPLICATION = 'tutorial_project.wsgi.application'
@@ -58,15 +65,17 @@ TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 TEMPLATE_DIRS = (
     TEMPLATE_PATH,
     )
+
 STATIC_PATH = os.path.join(BASE_DIR,'static')
 
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
 STATIC_URL = '/static/'
 
-MEDIA_PATH = os.path.join(BASE_DIR,'media')  
-MEDIA_URL = '/media/'  
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -90,8 +99,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
