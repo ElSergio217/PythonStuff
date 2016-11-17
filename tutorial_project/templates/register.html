@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% load extra %}
 {% block title %} Register {% endblock %}
 	{% block body_block %}
-
+<center>
 	<h1>Register with the Tutorial App</h1>
 
 	{% if registered %}
 	<strong>Thanks for registering!</strong>
 	<a href="{% url 'index' %}">Return Home</a>
 	{% else %}
-	<strong>Register Here</strong>
 
-	<form id='user_form' method='post' action='/register/' enctype='multipart/form-data'>
+	<form id='user_form' method='post' action='/register/' enctype='multipart/form-data' style="width:50%">
 
 		{% csrf_token %}
+		{% for field in user_form.visible_fields %}
+		<div class="form-group">
+			{{field.errors}}
+			{{field.help_text}}<br/>
+			{{field | addcls:'form-control'}}<br/>
+		</div>
+		{% endfor %}
 
-		{{ user_form.as_p }}
+		{% for field in profile_form.visible_fields %}
+		<div class="form-group">
+			{{field.errors}}
+			{{field.help_text}}<br/>
+			{{field | addcls:'form-control'}}<br/>
+		</div>
+		{% endfor %}
 
 		{{ profile_form.as_p }}
 
-		<input type='submit' name='submit' value='Register'>
+		<button class="btn btn-primary" type='submit' value="Login">Register</button>
 	</form>
 	{% endif %}
-
+</center>
 {% endblock %}

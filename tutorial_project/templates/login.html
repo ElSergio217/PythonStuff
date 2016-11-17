@@ -5,14 +5,14 @@
 {% block title %} Login {% endblock %}
 	{% block body_block %}
 
-	<h1>Login To Tutorial App</h1>
-	<form id="login_form" method='post' action='/login/'>
+	<center><h1>Login To Tutorial App</h1>
+	<form id="login_form" method='post' action='/login/' style="width:50%">
 		{% csrf_token %}
 		Username: <input type='text' name='username' value="" size="50">
 
 		Password: <input type='password' name='password' value="" size="50">
 
-		<input type='submit' value="Login">
+		<button class="btn btn-primary" type='submit' value="Login">Login</button>
 
-	</form>
+	</form></center>
 {% endblock %}

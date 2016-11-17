@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% load extra %}
 {% block title %} Add Page {% endblock %}
 
 	{% block body_block %}
-	<h1>Add a Page {{category.name}}</h1>
-	<form id="page_form" method='post' action='/category/{{slug}}/add-page/'>
+	<center><h1>Add a Page {{category.name}}</h1>
+	<br>
+	<form id="page_form" method='post' action='/category/{{slug}}/add-page/' style="width:50%">
 
 		{% csrf_token %}
 
 		{% for hidden in form.hidden_fields %}
 			{{ hidden }}
 		{% endfor %}
-
 		{% for field in form.visible_fields %}
-			{{ field.errors }}
-			{{ field.help_text }}
-			{{ field }}
+			<div class="form-group">
+				{{field.errors}}
+				{{field.help_text}}<br/>
+				{{field | addcls:'form-control'}}<br/>
+			</div>
 		{% endfor %}
 
-		<input type='submit' name='submit' value='Add a Page'>
+		<button type='submit' name='submit' value='Add a Page' class="btn btn-primary">Add a Page</button>
 	</form>
-
+</center>
 {% endblock %}

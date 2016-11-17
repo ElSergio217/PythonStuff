@@ -5,19 +5,20 @@
 {% block title %}{{ category.name }}{% endblock %}
 
 	{% block body_block %}
-	<h1>{{ category.name }}</h1>
+	<center><h1>{{ category.name }}</h1>
 	{% if category %}
 		{% if pages %}
-		<ul>
+		<ul class="list-group" style="width: 50%">
 			{% for page in pages %}
-			<li><a href="{{page.url}}">{{page.title}}</a></li>
+			<li class="list-group-item"><p><a href="{{page.url}}">{{page.title}}</a></p></li>
 			{% endfor %}
 		</ul>
 		{% else %}
 			<p>This category has no pages</p>
 		{% endif %}
-		<a href="{% url 'add-page' category.slug %}">Add Page</a>
+		<a href="{% url 'add-page' category.slug %}"><button type="submit" class="btn btn-primary">Add Page</button></a>
 	{% else %}
 		<p>The specified category {{ category.name }} does not exist</p>
+		</center>
 	{% endif %}
 {% endblock %}

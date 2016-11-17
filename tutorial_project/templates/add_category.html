@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% load extra %}
 {% block title %} Add Category {% endblock %}
 
 	{% block body_block %}
-		<h1>Add Category</h1>
-		<form id='category_form' method="post" action='/add-category/'>
+		<center><h1>Add Category</h1>
+		<form id='category_form' method="post" action='/add-category/' style="width: 50%">
 			{% csrf_token %}
 			{% for hidden in form.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
 
 			{% for field in form.visible_fields %}
-				{{ field }}
+				<div class="form-group">
+					{{field.errors}}
+					{{field.help_text}}<br/>
+					{{field | addcls:'form-control'}}<br/>
+				</div>
 			{% endfor %}
-			<input type="submit" value="Create a Category"/>
+			<button type="submit" class="btn btn-primary" value="Create a Category">Create a Category</button>
 		</form>
+		</center>
 {% endblock %}
